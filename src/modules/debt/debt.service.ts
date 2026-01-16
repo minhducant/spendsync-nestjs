@@ -4,8 +4,8 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 
 import { GetDebtDto } from './dto/get-debt.dto';
-import { ChangeStatus } from './dto/update-debt.dto';
 import { CreateDebtDto } from './dto/create-debt.dto';
+import { ChangeDebtStatus } from './dto/update-debt.dto';
 import { Debt, DebtDocument } from './schemas/debt.schema';
 import { ResPagingDto } from 'src/shares/dtos/pagination.dto';
 import { User, UserDocument } from '../user/schemas/user.schema';
@@ -76,7 +76,7 @@ export class DebtService {
     await this.debtModel.findByIdAndDelete(_id);
   }
 
-  async changeDebtStatus(dto: ChangeStatus): Promise<void> {
+  async changeDebtStatus(dto: ChangeDebtStatus): Promise<void> {
     const { _id, status } = dto;
     const validStatus = [0, 1, 2, 3];
     if (!validStatus.includes(status)) {

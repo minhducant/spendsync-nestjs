@@ -16,8 +16,8 @@ import { Debt } from './schemas/debt.schema';
 import { DebtService } from './debt.service';
 import { GetDebtDto } from './dto/get-debt.dto';
 import { IdDto } from 'src/shares/dtos/param.dto';
-import { ChangeStatus } from './dto/update-debt.dto';
 import { CreateDebtDto } from './dto/create-debt.dto';
+import { ChangeDebtStatus } from './dto/update-debt.dto';
 import { ResPagingDto } from 'src/shares/dtos/pagination.dto';
 import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 
@@ -71,7 +71,7 @@ export class DebtController {
   @ApiOperation({
     summary: '[Debt] Change status debt',
   })
-  async changeStatusById(@Body() body: ChangeStatus): Promise<void> {
+  async changeStatusById(@Body() body: ChangeDebtStatus): Promise<void> {
     await this.debtService.changeDebtStatus(body);
   }
 }

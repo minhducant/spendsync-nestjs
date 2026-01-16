@@ -19,8 +19,8 @@ import { ChatModule } from 'src/modules/chat/chat.module';
 import { ToolModule } from 'src/modules/tool/tool.module';
 import { InviteModule } from 'src/modules/invite/invite.module';
 import { FriendModule } from 'src/modules/friend/friend.module';
-import { BattlesModule } from 'src/modules/battles/battles.module';
 import { PaymentModule } from 'src/modules/payment/payment.module';
+import { MessagesModule } from 'src/modules/messages/messages.module';
 import { NotificationModule } from 'src/modules/notification/notification.module';
 
 const Modules: any = [
@@ -52,10 +52,10 @@ const Modules: any = [
   InviteModule,
   NoteModule,
   ChatModule,
+  MessagesModule,
   DebtModule,
   PaymentModule,
   NotificationModule,
-  // BattlesModule,
   ToolModule,
 ];
 export default Modules;

@@ -1,16 +1,18 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import { join } from 'path';
+import helmet from 'helmet';
 import * as config from 'config';
-import * as helmet from 'helmet';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import * as Sentry from '@sentry/node';
 import * as compression from 'compression';
 import { NestFactory } from '@nestjs/core';
-import { urlencoded, json } from 'express';
+import fastifyCsrf from '@fastify/csrf-protection';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { Logger, VersioningType } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { NestExpressApplication } from '@nestjs/platform-express';
 
 import { AppModules } from 'src/app.module';
 import { BodyValidationPipe } from 'src/shares/pipes/body.validation.pipe';
@@ -21,27 +23,30 @@ import { ResponseTransformInterceptor } from 'src/shares/interceptors/response.i
 const { name, port, prefix, node_env, sentry_dns } = config.get<any>('app');
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create<NestExpressApplication>(AppModules, {
-    cors: true,
-  });
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModules,
+    new FastifyAdapter({
+      bodyLimit: 50 * 1024 * 1024,
+    }),
+  );
   Sentry.init({
     dsn: sentry_dns,
     environment: node_env,
   });
-  app.enableCors({});
   app.use(helmet());
+  app.enableCors({});
   app.use(compression());
+  app.register(fastifyCsrf);
   app.enableShutdownHooks();
   app.setGlobalPrefix(prefix);
-  app.use(json({ limit: '50mb' }));
+  app.register(require('@fastify/multipart'), {
+    limits: { fileSize: 50 * 1024 * 1024 },
+  });
   app.useWebSocketAdapter(new IoAdapter(app));
   app.useGlobalPipes(new BodyValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new SentryInterceptor());
   app.enableVersioning({ type: VersioningType.URI });
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
-  app.useStaticAssets(join(__dirname, '..', 'public'));
-  app.use(urlencoded({ extended: true, limit: '50mb' }));
   app.useGlobalInterceptors(new ResponseTransformInterceptor());
   const options = new DocumentBuilder()
     .addBearerAuth()

@@ -32,23 +32,23 @@ export class ToolController {
     return await this.toolService.fetchTaxInfo(tax_code);
   }
 
-  @Get('gas')
-  @ApiOperation({ summary: '[Tool] Get Petro Price' })
-  async petroPrice() {
-    return this.toolService.fetchPetroleumPrice();
-  }
+  // @Get('gas')
+  // @ApiOperation({ summary: '[Tool] Get Petro Price' })
+  // async petroPrice() {
+  //   return this.toolService.fetchPetroleumPrice();
+  // }
 
-  @Get('gold')
-  @ApiOperation({ summary: '[Tool] Get Gold Price' })
-  async goldPrice() {
-    return this.toolService.fetchGoldPrice();
-  }
+  // @Get('gold')
+  // @ApiOperation({ summary: '[Tool] Get Gold Price' })
+  // async goldPrice() {
+  //   return this.toolService.fetchGoldPrice();
+  // }
 
-  @Get('kqsx')
-  @ApiOperation({ summary: '[Tool] Get Lottery results' })
-  async KQSX(@Query() query: KQSXQueryDto) {
-    return this.toolService.fetchKQSX(query);
-  }
+  // @Get('kqsx')
+  // @ApiOperation({ summary: '[Tool] Get Lottery results' })
+  // async KQSX(@Query() query: KQSXQueryDto) {
+  //   return this.toolService.fetchKQSX(query);
+  // }
 
   @Get('fetch')
   @ApiOperation({ summary: '[Tool] Fetch API response from URL' })

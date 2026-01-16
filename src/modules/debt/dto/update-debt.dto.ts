@@ -16,7 +16,7 @@ import {
 
 import { StatusEnum } from '../enum/debt.enum';
 
-export class ChangeStatus {
+export class ChangeDebtStatus {
   @ApiProperty({
     required: true,
   })
