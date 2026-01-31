@@ -9,7 +9,7 @@ import { ResPagingDto } from 'src/shares/dtos/pagination.dto';
 import { UserAuth } from 'src/shares/decorators/http.decorators';
 import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 
-@ApiTags('User - Người dùng')
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

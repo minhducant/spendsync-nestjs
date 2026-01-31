@@ -24,7 +24,7 @@ import { CreateNoteDto } from './dto/create-note.dto';
 import { ResPagingDto } from 'src/shares/dtos/pagination.dto';
 import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 
-@ApiTags('Note - Ghi chú')
+@ApiTags('Note')
 @Controller('note')
 export class NoteController {
   constructor(private noteService: NoteService) {}

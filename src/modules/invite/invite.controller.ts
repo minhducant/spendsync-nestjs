@@ -15,7 +15,7 @@ import { UserAuth } from 'src/shares/decorators/http.decorators';
 import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 
 @Controller('invite')
-@ApiTags('Invite - Chia sẻ')
+@ApiTags('Invite')
 @Controller()
 export class InviteController {
   constructor(private inviteService: InviteService) {}

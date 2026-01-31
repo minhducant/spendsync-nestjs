@@ -21,7 +21,7 @@ import { ChangeDebtStatus } from './dto/update-debt.dto';
 import { ResPagingDto } from 'src/shares/dtos/pagination.dto';
 import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 
-@ApiTags('Debt - Sổ ghi nợ')
+@ApiTags('Debt')
 @Controller('debt')
 export class DebtController {
   constructor(private readonly debtService: DebtService) {}

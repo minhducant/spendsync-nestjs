@@ -24,7 +24,7 @@ import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
 import { PaginationQueryDto } from './dto/pagination-query.dto';
 
-@ApiTags('Messages - Tin nhắn')
+@ApiTags('Messages')
 @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
 @Controller('messages')
 export class MessagesController {

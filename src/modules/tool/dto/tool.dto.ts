@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsEnum, IsOptional } from 'class-validator';
+import { IsString, IsEnum, IsOptional, IsDateString } from 'class-validator';
 
 export enum Bank {
   Vietcombank = 'vietcombank',
@@ -66,13 +66,13 @@ export enum ProvinceVN {
 
 export class ExchangeRateQueryDto {
   @ApiProperty({
-    enum: Bank,
-    example: Bank.Vietcombank,
-    required: true,
+    example: '2026-01-16',
+    description: 'Ngày lấy tỷ giá (YYYY-MM-DD)',
+    required: false,
   })
-  @IsEnum(Bank)
+  @IsDateString()
   @IsOptional()
-  bank?: Bank;
+  date?: string;
 }
 
 export class KQSXQueryDto {

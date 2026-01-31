@@ -22,7 +22,7 @@ import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 import { GetWalletDto, AddWalletDto, UpdateWalletDto } from './dto/wallet.dto';
 import { GenerateQRCodeDto, LookupAccountDto } from './dto/generate-vietqr.dto';
 
-@ApiTags('Payment - Thanh toán, chuyển tiền')
+@ApiTags('Payment')
 @Controller('payment')
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}

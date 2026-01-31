@@ -13,12 +13,11 @@ import { FriendService } from './friend.service';
 import { UserService } from '../user/user.service';
 import { AddFriendDto } from './dto/add-friend.dto';
 import { GetFriendDto } from './dto/get-friend.dto';
-import { Friend } from '../user/schemas/user.schema';
 import { ResPagingDto } from 'src/shares/dtos/pagination.dto';
 import { UserAuth } from 'src/shares/decorators/http.decorators';
 import { UserID } from 'src/shares/decorators/get-user-id.decorator';
 
-@ApiTags('Friend - Bạn bè')
+@ApiTags('Friend')
 @Controller('friend')
 export class FriendController {
   constructor(private friendService: FriendService) {}

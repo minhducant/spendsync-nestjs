@@ -14,7 +14,7 @@ import {
   ExchangeRateQueryDto,
 } from './dto/tool.dto';
 
-@ApiTags('Tool - Công cụ')
+@ApiTags('Tool')
 @ApiBearerAuth()
 @Controller('tool')
 export class ToolController {

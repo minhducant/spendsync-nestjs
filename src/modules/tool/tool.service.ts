@@ -94,10 +94,11 @@ export class ToolService {
   }
 
   async fetchExchangeRate(query: ExchangeRateQueryDto) {
-    const url = `https://baomoi.com/_next/data/uZbPKprv4IEKetyH91lar/utilities/exchange-rate/${query.bank}.json?shortName=${query.bank}`;
+    const date = query.date ?? new Date().toISOString().slice(0, 10);
+    const url = `https://www.vietcombank.com.vn/api/exchangerates?date=${date}`;
     try {
       const response = await this.axiosInstance.get(url);
-      return response?.data?.pageProps?.resp?.data?.content;
+      return response?.data?.Data;
     } catch (error) {
       return { error: error.message };
     }

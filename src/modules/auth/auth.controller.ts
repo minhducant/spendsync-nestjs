@@ -15,7 +15,7 @@ import { ResponseRefreshTokenDto } from './dto/response-refresh-token.dto';
 import { GetCurrentUser } from 'src/shares/decorators/get-current-user.decorators';
 
 @Controller('auth')
-@ApiTags('Auth - Xác thực')
+@ApiTags('Auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,

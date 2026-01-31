@@ -17,6 +17,7 @@ app:
 redis:
   host: REDIS_HOST
   port: REDIS_PORT
+  password: REDIS_PASSWORD
 
 kafka:
   brokers: KAFKA_BROKERS
@@ -32,7 +33,6 @@ mail:
   service: MAIL_SERVICE
   enable: MAIL_ENABLE
 
-
 linode_config:
   upload_path: LINODE_UPLOAD_PATH
   access_key_id: LINODE_ACCESS_KEY_ID
@@ -40,7 +40,7 @@ linode_config:
   bucket_name: LINODE_BUCKET_NAME
   region: LINODE_REGION
   domain: LINODE_DOMAIN
-  upload_limit: UPLOAD_LIMIT 
+  upload_limit: UPLOAD_LIMIT
   base_url: LINODE_BASE_URL
 
 mongodb:
@@ -55,13 +55,13 @@ zalo:
 google:
   base_api: GOOGLE_BASE_API
 
-server: 
+server:
   web_url: WEB_URL
 
 sign_up_expiration_time: CLIENT_SIGN_UP_EXPIRATION_TIME
 forgot_password_expiration_time: CLIENT_FORGOT_PASSWORD_EXPIRATION_TIME
 
-stripe: 
-   api_key: API_KEY
-   success_url: SUCCESS_URL
-   cancel_url: CANCEL_URL
+stripe:
+  api_key: API_KEY
+  success_url: SUCCESS_URL
+  cancel_url: CANCEL_URL

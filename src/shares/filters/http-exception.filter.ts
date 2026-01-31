@@ -1,22 +1,33 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
-import { Request, Response } from 'express';
+import {
+  Catch,
+  HttpStatus,
+  HttpException,
+  ArgumentsHost,
+  ExceptionFilter,
+} from '@nestjs/common';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  async catch(exception: HttpException, host: ArgumentsHost): Promise<void> {
+  catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const request = ctx.getRequest<Request>();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
+
     const status = exception.getStatus();
+    const exceptionResponse = exception.getResponse() as any;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { code, message, ...rest }: any = exception.getResponse();
+    const code = exceptionResponse?.code || 'SOME_THING_WENT_WRONG';
+    const message = exceptionResponse?.message || 'Unknown errors';
+    const rest =
+      exceptionResponse && typeof exceptionResponse === 'object'
+        ? exceptionResponse
+        : {};
 
-    response.status(status).json({
-      code: code || 'SOME_THING_WENT_WRONG',
+    response.status(status).send({
+      code,
       statusCode: status || HttpStatus.INTERNAL_SERVER_ERROR,
       info: {
-        message: message || 'Unknown errors',
+        message,
         ...rest,
       },
       path: request.url,

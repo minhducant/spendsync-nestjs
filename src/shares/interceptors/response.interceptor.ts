@@ -41,9 +41,9 @@ export class ResponseTransformInterceptor<T>
         if (_data?.data?.length || _data?.length) {
           metadata.length = _data?.data?.length || _data?.length;
         }
-        if (req.query) {
-          metadata.query = { ...req.query };
-        }
+        // if (req.query) {
+        //   metadata.query = { ...req.query };
+        // }
         delete _data.metadata;
         return {
           code: HttpStatus.OK,

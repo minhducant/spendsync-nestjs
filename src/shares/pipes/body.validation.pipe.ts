@@ -4,7 +4,9 @@ import { ValidationError } from 'class-validator';
 export class BodyValidationPipe extends ValidationPipe {
   constructor() {
     super({
+      whitelist: true,
       transform: true,
+      forbidNonWhitelisted: true,
       transformOptions: { enableImplicitConversion: true },
       skipMissingProperties: false,
       exceptionFactory: (errs: [ValidationError]) => {
